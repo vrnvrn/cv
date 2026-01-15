@@ -1,25 +1,91 @@
-// Interactive CV Script
+// Interactive CV Script - Toggle Details and Sections
+
+// Dark Mode Toggle
+function initTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    themeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Project card expansion
-    const projectCards = document.querySelectorAll('.project-card');
+    // Initialize theme
+    initTheme();
+    // Initialize all sections as collapsed
+    const allSections = document.querySelectorAll('.collapsible-section');
+    allSections.forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Toggle functionality for section headers
+    const sectionHeaders = document.querySelectorAll('.section-header');
     
-    projectCards.forEach(card => {
-        card.addEventListener('click', function(e) {
+    sectionHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
             // Don't toggle if clicking on a link
             if (e.target.tagName === 'A') {
                 return;
             }
             
-            // Toggle active class
-            const isActive = this.classList.contains('active');
+            const targetId = this.getAttribute('data-target');
+            const sectionContent = document.getElementById(targetId);
+            const section = this.closest('.collapsible-section');
             
-            // Close all other cards
-            projectCards.forEach(c => c.classList.remove('active'));
+            if (section && sectionContent) {
+                const isActive = section.classList.contains('active');
+                
+                if (isActive) {
+                    section.classList.remove('active');
+                } else {
+                    section.classList.add('active');
+                    
+                    // If this is the work experience section, open all detail toggles
+                    if (targetId === 'work-section-content') {
+                        const workSection = document.getElementById('work-section-content');
+                        const detailToggles = workSection.querySelectorAll('.toggle-details');
+                        detailToggles.forEach(toggle => {
+                            const detailTargetId = toggle.getAttribute('data-target');
+                            const detailContent = document.getElementById(detailTargetId);
+                            if (detailContent && !detailContent.classList.contains('active')) {
+                                detailContent.classList.add('active');
+                                toggle.classList.add('active');
+                                toggle.textContent = '▼ read more';
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    });
+
+    // Toggle functionality for expandable details
+    const toggleButtons = document.querySelectorAll('.toggle-details');
+    
+    toggleButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent section toggle when clicking detail toggle
+            const targetId = this.getAttribute('data-target');
+            const detailsContent = document.getElementById(targetId);
             
-            // Toggle current card
-            if (!isActive) {
-                this.classList.add('active');
+            if (detailsContent) {
+                const isActive = detailsContent.classList.contains('active');
+                
+                if (isActive) {
+                    detailsContent.classList.remove('active');
+                    this.classList.remove('active');
+                    this.textContent = '→ read more';
+                } else {
+                    detailsContent.classList.add('active');
+                    this.classList.add('active');
+                    this.textContent = '▼ read more';
+                }
             }
         });
     });
@@ -37,64 +103,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // Add animation on scroll
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all sections
-    document.querySelectorAll('section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
-    });
-
-    // Initialize first section as visible
-    const firstSection = document.querySelector('section');
-    if (firstSection) {
-        firstSection.style.opacity = '1';
-        firstSection.style.transform = 'translateY(0)';
-    }
 });
-
-// Placeholder for adding LinkedIn data
-// Update these when you have the actual links and data
-const links = {
-    linkedin: '#', // Add your LinkedIn URL
-    email: 'mailto:', // Add your email
-    portfolio: '#', // Add your portfolio URL
-    zuvillage: '#', // Add ZuVillage Georgia link
-    zuitzerland: '#', // Add Zuitzerland link
-    zuitzerlandReport: '#', // Add Zuitzerland full report link
-    zuzalu: '#' // Add Zuzalu link
-};
-
-// Update links when data is available
-function updateLinks() {
-    Object.keys(links).forEach(key => {
-        const element = document.getElementById(`${key}-link`);
-        if (element && links[key] !== '#') {
-            element.href = links[key];
-        }
-    });
-    
-    const zuitzerlandReport = document.getElementById('zuitzerland-report');
-    if (zuitzerlandReport && links.zuitzerlandReport !== '#') {
-        zuitzerlandReport.href = links.zuitzerlandReport;
-    }
-}
-
-// Call this function when you have the actual links
-// updateLinks();

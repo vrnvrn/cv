@@ -397,7 +397,7 @@ body {
 
 /* Skills Section */
 .skills-section {
-    margin-bottom: 2.5rem;
+    /* Uses collapsible-section margin-bottom */
 }
 
 .skills-list {
@@ -620,7 +620,7 @@ body {
 
 /* Certifications Section */
 .certifications-section {
-    margin-bottom: 2.5rem;
+    /* Uses collapsible-section margin-bottom */
 }
 
 .cert-item {
@@ -718,7 +718,7 @@ body {
 
 /* Articles Section */
 .articles-section {
-    margin-bottom: 2.5rem;
+    /* Uses collapsible-section margin-bottom */
 }
 
 /* Speaking Engagements Section */
@@ -830,7 +830,7 @@ body {
 
 /* Recommendations Section */
 .recommendations-section {
-    margin-bottom: 2.5rem;
+    /* Uses collapsible-section margin-bottom */
 }
 
 .recommendation-item {
@@ -962,12 +962,6 @@ body {
         order: 11;
     }
     
-    /* When stacked, ensure even spacing between all sections */
-    /* All sections except the last one need spacing */
-    .two-column-layout > .collapsible-section:not(.speaking-section) {
-        margin-bottom: 2.5rem;
-    }
-    
     /* The true last section (Speaking Engagements) has no bottom margin */
     .speaking-section {
         margin-bottom: 0;
@@ -978,7 +972,8 @@ body {
     }
 
     .name {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.01em;
     }
     
 }

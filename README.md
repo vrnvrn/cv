@@ -1,76 +1,92 @@
-# Veronica S - Modern CV
+# Veronica - 高惠莉 - vrn.eth - CV
 
-A simple, elegant, single-page modern CV with interactive elements.
+A modern, interactive single-page CV with dark/light mode, collapsible sections, and responsive two-column layout.
 
-## Quick Start
+## Features
 
-1. Open `index.html` in your browser
-2. Update links and data as needed
-3. Customize styling in `styles.css`
-4. Add interactive features in `script.js`
+- ✅ **Dark/Light Mode Toggle** - Persistent theme preference with localStorage
+- ✅ **Collapsible Sections** - Click section headers to expand/collapse content
+- ✅ **Auto-expand Details** - Work experience and hackathon details open automatically
+- ✅ **Two-Column Layout** - Desktop: side-by-side columns, Mobile: single column with custom ordering
+- ✅ **Responsive Design** - Optimized for mobile, tablet, and desktop
+- ✅ **Print-Friendly** - Clean print styles for PDF export
+- ✅ **Modern Typography** - Inter font family with elegant serif for name header
+- ✅ **Smooth Animations** - Transitions for section expansion and theme switching
 
-## Files Structure
+## File Structure
 
-- `index.html` - Main CV page
-- `styles.css` - Modern, responsive styling
-- `script.js` - Interactive features (expandable sections, smooth scrolling)
-- `refs/plan.md` - Development plan
-- `refs/linkedin_data_extraction.md` - Template for extracting LinkedIn data
+- `index.html` - Main CV page with all content sections
+- `styles.css` - Responsive styling with CSS variables for theming
+- `script.js` - Interactive features (section toggles, theme switching, auto-expand)
+- `vercel.json` - Vercel deployment configuration for static site
+- `refs/` - Reference materials and development notes (gitignored)
 
-## Next Steps
+## Sections
 
-### Immediate (For Today's Application)
+The CV includes the following collapsible sections:
 
-1. **Add Links**:
-   - Update `script.js` with actual URLs:
-     - LinkedIn profile
-     - Email address
-     - Portfolio/website
-     - ZuVillage Georgia (with numbers)
-     - Zuitzerland (with numbers and full report link)
-     - Zuzalu link
+**Left Column (Desktop):**
+- Education
+- Organizations
+- Honors & Awards
+- Certifications
+- Skills
+- Recommendation
 
-2. **Add Metrics & Numbers**:
-   - Add specific numbers for ZuVillage Georgia in the project card
-   - Add specific numbers for Zuitzerland in the project card
-   - Include any other quantifiable achievements
+**Right Column (Desktop):**
+- About Me
+- Zuzalu + Startup Societies
+- Work Experience
+- Articles
+- Speaking Engagements
 
-3. **Extract LinkedIn Data**:
-   - Use `refs/linkedin_data_extraction.md` as a guide
-   - Add education details
-   - Add languages, certifications, organizations, volunteering
-   - Update the "Additional Sections" area in `index.html`
+**Mobile Order:**
+Sections are reordered on mobile for optimal reading flow: About Me → Education → Organizations → Honors → Zuzalu → Work → Certifications → Skills → Recommendation → Articles → Speaking
 
-4. **Review & Polish**:
-   - Check all links work
-   - Verify all information is accurate
-   - Test responsive design on mobile
-   - Test print version
+## Customization
 
-### Features
+### Colors & Theme
+Edit CSS variables in `styles.css`:
+- Light mode: `:root` section
+- Dark mode: `[data-theme="dark"]` section
 
-- ✅ Single-page design
-- ✅ Interactive project cards (click to expand)
-- ✅ Smooth scrolling
-- ✅ Responsive design (mobile-friendly)
-- ✅ Print-friendly styles
-- ✅ Modern, elegant typography
-- ✅ Hover effects and animations
-- ✅ Deep navigation without noise
+### Content
+- Edit `index.html` directly to update content
+- Sections use the `collapsible-section` class structure
+- Expandable details use `expandable-details` with `toggle-details` buttons
 
-### Customization
-
-- Colors: Edit CSS variables in `styles.css` (`:root` section)
-- Fonts: Currently using Inter from Google Fonts
-- Layout: Adjust grid layouts in `styles.css`
-- Content: Edit `index.html` directly
+### Auto-expand Behavior
+In `script.js`, sections can be configured to auto-expand details:
+- Work Experience: All detail toggles open automatically
+- Honors & Awards: Hackathon details open automatically
 
 ## Deployment
 
-You can deploy this CV to:
+### Vercel (Current)
+The site is configured for Vercel deployment with `vercel.json`:
+- Framework: null (static site)
+- Build command: null (no build step needed)
+
+Simply connect your GitHub repository to Vercel for automatic deployments.
+
+### Other Platforms
+This static site can be deployed to:
 - GitHub Pages
 - Netlify
-- Vercel
 - Any static hosting service
 
-Simply upload the files or connect your repository.
+No build process required - just upload the HTML, CSS, and JS files.
+
+## Development
+
+1. Clone the repository
+2. Open `index.html` in a browser
+3. Edit content in `index.html`
+4. Customize styles in `styles.css`
+5. Modify interactions in `script.js`
+
+## Browser Support
+
+- Modern browsers (Chrome, Firefox, Safari, Edge)
+- Mobile browsers (iOS Safari, Chrome Mobile)
+- Responsive breakpoint: 968px (tablets and below)

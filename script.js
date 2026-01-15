@@ -60,6 +60,17 @@ document.addEventListener('DOMContentLoaded', function() {
                             }
                         });
                     }
+                    
+                    // If this is the honors section, open the hackathon details
+                    if (targetId === 'honors-section-content') {
+                        const sub0Details = document.getElementById('sub0-details');
+                        const sub0Toggle = document.querySelector('[data-target="sub0-details"]');
+                        if (sub0Details && sub0Toggle && !sub0Details.classList.contains('active')) {
+                            sub0Details.classList.add('active');
+                            sub0Toggle.classList.add('active');
+                            sub0Toggle.textContent = '▼ read more';
+                        }
+                    }
                 }
             }
         });

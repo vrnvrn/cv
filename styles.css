@@ -680,6 +680,59 @@ body {
     text-decoration: underline;
 }
 
+/* FLOSS Apps Section */
+.floss-section {
+    /* Uses collapsible-section margin-bottom */
+}
+
+.floss-item {
+    margin-bottom: 1rem;
+}
+
+.floss-item:last-child {
+    margin-bottom: 0;
+}
+
+.floss-name {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.25rem;
+}
+
+.floss-desc {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-bottom: 0.25rem;
+}
+
+.floss-links {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.floss-link {
+    font-size: 0.75rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.floss-link:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+.award-badge {
+    font-size: 0.625rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    background-color: rgba(59, 130, 246, 0.1);
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    margin-left: 0.5rem;
+}
+
 /* Additional Section */
 .additional-section {
     margin-bottom: 0;

@@ -703,6 +703,12 @@ body {
 .floss-desc {
     font-size: 0.75rem;
     color: var(--text-light);
+    margin-bottom: 0.125rem;
+}
+
+.floss-dates {
+    font-size: 0.6875rem;
+    color: var(--text-light);
     margin-bottom: 0.25rem;
 }
 

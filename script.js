@@ -1,5 +1,42 @@
 // Interactive CV Script - Toggle Details and Sections
 
+// Fetch and update FLOSS app last commit dates from GitHub API
+async function updateFlossCommitDates() {
+    const flossItems = document.querySelectorAll('.floss-item');
+    
+    for (const item of flossItems) {
+        const githubLink = item.querySelector('a.floss-link[href*="github.com"]');
+        const datesEl = item.querySelector('.floss-dates');
+        
+        if (!githubLink || !datesEl) continue;
+        
+        // Extract owner/repo from GitHub URL
+        const match = githubLink.href.match(/github\.com\/([^\/]+)\/([^\/]+)/);
+        if (!match) continue;
+        
+        const [, owner, repo] = match;
+        
+        try {
+            const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/commits?per_page=1`);
+            if (!response.ok) continue;
+            
+            const commits = await response.json();
+            if (commits.length === 0) continue;
+            
+            const lastCommitDate = commits[0].commit.author.date.split('T')[0];
+            
+            // Update the dates text, preserving initial commit
+            const currentText = datesEl.textContent;
+            const initialMatch = currentText.match(/initial commit: (\d{4}-\d{2}-\d{2})/);
+            if (initialMatch) {
+                datesEl.textContent = `initial commit: ${initialMatch[1]} // last commit: ${lastCommitDate}`;
+            }
+        } catch (error) {
+            console.warn(`Failed to fetch commit date for ${owner}/${repo}:`, error);
+        }
+    }
+}
+
 // Dark Mode Toggle
 function initTheme() {
     const themeToggle = document.getElementById('theme-toggle');
@@ -18,6 +55,10 @@ function initTheme() {
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme
     initTheme();
+    
+    // Fetch latest commit dates for FLOSS apps
+    updateFlossCommitDates();
+    
     // Initialize all sections as collapsed
     const allSections = document.querySelectorAll('.collapsible-section');
     allSections.forEach(section => {

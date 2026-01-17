@@ -698,6 +698,12 @@ body {
     color: var(--text-light);
 }
 
+.org-desc {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
 .org-link {
     font-size: 0.75rem;
     color: var(--primary-color);

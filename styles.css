@@ -33,6 +33,15 @@
     box-sizing: border-box;
 }
 
+/* Ensure visited links maintain their color */
+a:visited {
+    color: inherit;
+}
+
+[data-theme="dark"] a:visited {
+    color: var(--primary-color);
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.5;
@@ -509,6 +518,23 @@ body {
     margin-bottom: 0.5rem;
 }
 
+.details-content a,
+.role-bullets a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.details-content a:visited,
+.role-bullets a:visited {
+    color: var(--primary-color);
+}
+
+.details-content a:hover,
+.role-bullets a:hover {
+    text-decoration: underline;
+}
+
 .role-bullets {
     list-style: none;
     padding-left: 0;
@@ -545,6 +571,10 @@ body {
     font-size: 0.75rem;
     font-weight: 500;
     transition: var(--transition);
+}
+
+.project-link:visited {
+    color: var(--primary-color);
 }
 
 .project-link:hover {
@@ -675,6 +705,10 @@ body {
     transition: var(--transition);
 }
 
+.org-link:visited {
+    color: var(--primary-color);
+}
+
 .org-link:hover {
     color: var(--hover-color);
     text-decoration: underline;
@@ -722,6 +756,10 @@ body {
     color: var(--primary-color);
     text-decoration: none;
     transition: var(--transition);
+}
+
+.floss-link:visited {
+    color: var(--primary-color);
 }
 
 .floss-link:hover {
@@ -844,6 +882,10 @@ body {
     display: inline-block;
 }
 
+.speaking-link:visited {
+    color: var(--primary-color);
+}
+
 .speaking-link:hover {
     text-decoration: underline;
 }
@@ -881,6 +923,10 @@ body {
     color: var(--primary-color);
     text-decoration: none;
     transition: var(--transition);
+}
+
+.article-link:visited {
+    color: var(--primary-color);
 }
 
 .article-link:hover {
